@@ -5,6 +5,15 @@ public class Scooter extends MotoCycle{
     }
 
     @Override
+    public void accelerate(int incSpeed) {
+        if(!start){
+            System.out.println("MotorCycle is not started");
+            return ;
+        }
+        super.accelerate(incSpeed);
+    }
+
+    @Override
     public void printState() {
         System.out.format("You are in %s %s\n",brand,model);
         String state = null;

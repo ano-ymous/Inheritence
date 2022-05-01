@@ -39,6 +39,7 @@ public class Truck implements Vehichle,Gear{
             System.out.println("Engine is already stopped");
             return ;
         }
+        speed = 0;
         start = false;
     }
 
@@ -79,7 +80,7 @@ public class Truck implements Vehichle,Gear{
         String state = null;
         if(start) state = "running";
         else state = "stopped";
-        System.out.format("Engine is %s with a speed %d",state,speed);
+        System.out.format("Engine is %s with a speed %d kmph",state,speed);
         if(start) {
             String s = null;
             if(gearCount == 1) s = "1st";
@@ -88,9 +89,19 @@ public class Truck implements Vehichle,Gear{
             else s = String.format("%dth",gearCount);
             System.out.format(" and in %s gear",s);
         }
+        if(load!=0) System.out.print(" with a load of "+load+"llb.");
+        System.out.println();
     }
     @Override
     public void accelerate(int incSpeed) {
+        if(!start){
+            System.out.println("Truck is not started");
+            return ;
+        }
+        if(isNeutral){
+            System.out.println("Please change gear from neutral to accelerate");
+            return ;
+        }
         if(incSpeed+this.speed >= maxSpeed){
             System.out.println("You can accelerate upto "+maxSpeed);
             return ;

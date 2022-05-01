@@ -9,15 +9,16 @@ public class Car implements Vehichle,Gear{
     boolean isNeutral;
 
     Car(String brand,String model){
-        this(brand,model,GearType.Manual);
+        this(brand,model,GearType.Manual,250);
     }
-    Car(String brand,String model,GearType geartype){
+    Car(String brand,String model,GearType geartype,int maxSpeed){
         this.brand = brand;
         this.model = model;
         this.geartype = geartype;
         this.gearCount = 0;
         this.start = false;
         this.isNeutral = true;
+        this.maxSpeed = maxSpeed;
     }
 
     @Override
@@ -35,6 +36,7 @@ public class Car implements Vehichle,Gear{
             System.out.println("Engine is already stopped");
             return ;
         }
+        speed = 0;
         start = false;
     }
 
@@ -91,12 +93,20 @@ public class Car implements Vehichle,Gear{
             else if(gearCount == 2) s = "2nd";
             else if(gearCount == 3) s = "3rd";
             else s = String.format("%dth",gearCount);
-            System.out.format("and in %s gear",s);
+            System.out.format(" and in %s gear\n",s);
         }
     }
 
     @Override
     public void accelerate(int incSpeed) {
+        if(!start){
+            System.out.println("MotorCycle is not started");
+            return ;
+        }
+        if(isNeutral){
+            System.out.println("Please change gear from neutral to accelerate");
+            return ;
+        }
         if(incSpeed+this.speed >= maxSpeed){
             System.out.println("You can accelerate upto "+maxSpeed);
             return ;

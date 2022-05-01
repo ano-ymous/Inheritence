@@ -1,3 +1,5 @@
+import javax.management.ObjectInstance;
+
 public abstract class MotoCycle implements Vehichle {
     int speed;
     int maxSpeed;
@@ -24,6 +26,7 @@ public abstract class MotoCycle implements Vehichle {
             System.out.println("Bike is already stopped");
             return ;
         }
+        speed = 0;
         start = false;
     }
     @Override

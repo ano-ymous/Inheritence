@@ -33,6 +33,19 @@ public class MotorCycleWithGear extends MotoCycle implements Gear {
     }
 
     @Override
+    public void accelerate(int incSpeed) {
+        if(!start){
+            System.out.println("MotorCycle is not started");
+            return ;
+        }
+        if(isNeutral){
+            System.out.println("Change your gear from neutral to accelerate");
+            return ;
+        }
+        super.accelerate(incSpeed);
+    }
+
+    @Override
     public boolean isNeutral() {
         return isNeutral;
     }
